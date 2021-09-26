@@ -17,8 +17,7 @@ module.exports = {
         warning: colors.amber,
       },
       fontFamily: {
-        sans: ['Roboto Condensed', ...defaultTheme.fontFamily.sans],
-        display: ['Odibee Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Josefin Sans', ...defaultTheme.fontFamily.sans],
       },
       zIndex: {
         preload: 9999,

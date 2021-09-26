@@ -1,7 +1,17 @@
-<script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'
-</script>
-
 <template>
-  <HelloWorld msg="Vue 3 + TypeScript + TailwindCSS + Vite" />
+  <layout>
+    <router-view />
+  </layout>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import Layout from '@/components/Layout.vue'
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    Layout,
+  },
+})
+</script>
