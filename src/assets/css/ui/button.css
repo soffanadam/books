@@ -61,7 +61,7 @@
 
       & .icon,
       & .badged-icon {
-        @apply translate-x-0 w-1/2 h-1/2;
+        @apply translate-x-0 w-3/4 h-3/4;
       }
     }
   }

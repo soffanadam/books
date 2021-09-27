@@ -3,6 +3,7 @@
 
 @import './button';
 @import './field';
+@import './icon';
 @import './pagination';
 @import './text-input';
 @import './spinkit';

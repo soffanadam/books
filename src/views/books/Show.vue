@@ -6,24 +6,33 @@
         class="mr-2 mb-1"
       />Back</router-link
     >
-    <h1 class="text-3xl font-normal">
-      <loading-text :when="state.busy">{{ state.book.title }}</loading-text>
-    </h1>
-    Book Title
+    <div class="flex justify-between">
+      <div>
+        <h1 class="text-3xl font-normal">
+          <loading-text :when="state.busy">{{ state.book.title }}</loading-text>
+        </h1>
+        Book Title
+      </div>
+      <div v-if="state.book" class="flex items-center">
+        <book-link v-if="$route.name == 'Update Book'" :book="state.book">
+          <btn variant="outline" class="gray-400">
+            <icon name="md_twotone:close" />
+            Discard
+          </btn>
+        </book-link>
+        <book-update-link v-else :book="state.book">
+          <btn class="gray-300">
+            <icon name="md_twotone:edit" />
+            Update
+          </btn>
+        </book-update-link>
+      </div>
+    </div>
   </div>
   <div v-if="state.busy" class="flex justify-center p-5">
     <spinner />
   </div>
-  <template v-else>
-    <div class="p-5 border-t">
-      <div class="text-2xl">{{ state.book.year }}</div>
-      Year
-    </div>
-    <div class="p-5 border-t">
-      Description
-      <div class="text-2xl">{{ state.book.description }}</div>
-    </div>
-  </template>
+  <router-view v-else />
 </template>
 
 <script lang="ts">
@@ -34,9 +43,12 @@ import { State as BookState } from '@/store/modules/book'
 import Icon from '@/components/ui/Icon.vue'
 import LoadingText from '@/components/utils/LoadingText.vue'
 import Spinner from '@/components/ui/Spinner.vue'
+import Btn from '@/components/ui/form/Btn.vue'
+import BookUpdateLink from '@/components/book/BookUpdateLink.vue'
+import BookLink from '@/components/book/BookLink.vue'
 
 export default defineComponent({
-  components: { Icon, LoadingText, Spinner },
+  components: { Icon, LoadingText, Spinner, Btn, BookUpdateLink, BookLink },
   setup() {
     const store = useStore()
     const state: ComputedRef<BookState> = computed(() => store.state.book)

@@ -14,6 +14,8 @@ export interface State {
 
 export interface Mutation extends MutationTree<State> {
   LOADING(state: State): void
+  NEW(state: State): void
+  UPDATE(state: State): void
   SET_BOOK(state: State, value: Book): void
   SET_ERRORS(state: State, value: PlainObject): void
 }
@@ -45,6 +47,17 @@ const mutations = mutation<State, Mutation>(state, {
   NEW(state) {
     state.form = { ...defaultAttrs }
   },
+  UPDATE(state) {
+    const book = state.book
+
+    if (book) {
+      state.form = {
+        title: book.title,
+        year: book.year,
+        description: book.description,
+      }
+    }
+  },
   SET_BOOK(state, value) {
     state.book = value
   },
@@ -64,25 +77,36 @@ const actions = action<State, Action>(state, {
     commit('LOADING')
     const book = await books.show(id)
     commit('SET_BOOK', book)
+    commit('UPDATE')
     commit('LOADED')
   },
-  store({ state, commit }) {
+  save({ state, commit, dispatch }) {
     commit('SET_ERRORS', [])
     commit('LOADING')
 
     return new Promise((resolve, reject) => {
-      books
-        .post(state.form)
-        .then((book) => {
+      let save
+      const book = state.book
+      if (book) {
+        save = books.put(book.id, state.form).then(() => {
+          resolve(true)
+          dispatch('show', book.id)
+        })
+      } else {
+        save = books.post(state.form).then((book) => {
           resolve(book)
         })
+      }
+
+      save
         .catch((error: Rest.Error) => {
           reject(error)
 
           if (error.errors) {
             commit('SET_ERRORS', error.errors)
           }
-
+        })
+        .finally(() => {
           commit('LOADED')
         })
     })

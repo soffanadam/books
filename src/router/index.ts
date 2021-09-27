@@ -19,6 +19,18 @@ const routes = [
     path: '/books/:id',
     name: 'Book',
     component: () => import('../views/books/Show.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Show Book',
+        component: () => import('../views/books/show/Index.vue'),
+      },
+      {
+        path: 'update',
+        name: 'Update Book',
+        component: () => import('../views/books/show/Update.vue'),
+      },
+    ],
   },
 ]
 

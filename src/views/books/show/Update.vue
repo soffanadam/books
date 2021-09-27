@@ -1,13 +1,4 @@
 <template>
-  <div class="bg-white p-5">
-    <router-link to="/books" class="mb-2 inline-flex items-center"
-      ><icon
-        name="md_twotone:chevron-left"
-        class="mr-2 mb-1"
-      />Back</router-link
-    >
-    <h1 class="text-3xl font-normal">New Book</h1>
-  </div>
   <form @submit.prevent="submitHandler">
     <book-form />
     <div class="p-5 border-t">
@@ -19,31 +10,32 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { notify } from '@kyvg/vue3-notification'
-import Icon from '@/components/ui/Icon.vue'
 import BookForm from '@/components/book/BookForm.vue'
 import Btn from '@/components/ui/form/Btn.vue'
 import { useStore } from '@/store'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { url as bookLinkUrl } from '@/components/book/BookLink.vue'
 
 export default defineComponent({
-  components: { Icon, BookForm, Btn },
+  components: { BookForm, Btn },
   setup() {
     const store = useStore()
     const router = useRouter()
+    const route = useRoute()
 
-    store.commit('book/NEW')
+    store.commit('book/UPDATE')
 
     const submitHandler = async () => {
       try {
-        const book = await store.dispatch('book/save')
+        await store.dispatch('book/save')
 
         notify({
           type: 'success',
           title: 'Success',
-          text: 'New book created',
+          text: 'Book updated',
         })
 
-        router.push({ path: `/books/${book.id}` })
+        router.push({ path: bookLinkUrl(route.params.id as string) })
       } catch (error) {
         notify({
           type: 'error',
