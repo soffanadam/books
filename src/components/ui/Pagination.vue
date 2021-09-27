@@ -7,7 +7,7 @@
       ]"
       @click.stop.prevent="prevHandler"
     >
-      <svg-icon name="chevron_left" />
+      <icon name="md_twotone:chevron-left" />
     </li>
     <template v-if="simple">
       <li class="pagination__item">
@@ -31,25 +31,19 @@
         />
       </li>
       <li
-        :class="['pagination__item hidden md:block', { active: current === 1 }]"
+        :class="['pagination__item', { active: current == 1 }]"
         @click.stop.prevent="firstHandler"
       >
         1
       </li>
-      <li
-        v-if="pages > 5 && current > 3"
-        class="pagination__item disabled hidden md:block"
-      >
+      <li v-if="pages > 5 && current > 3" class="pagination__item disabled">
         ...
       </li>
       <template v-for="i in pages">
         <li
           v-if="inFive(i)"
           :key="i"
-          :class="[
-            'pagination__item hidden md:block',
-            { active: current == i },
-          ]"
+          :class="['pagination__item', { active: current == i }]"
           @click.stop.prevent="clickHandler(i)"
         >
           {{ i }}
@@ -57,16 +51,13 @@
       </template>
       <li
         v-if="pages > 5 && pages - current > 3"
-        class="pagination__item disabled hidden md:block"
+        class="pagination__item disabled"
       >
         ...
       </li>
       <li
         v-if="pages > 1"
-        :class="[
-          'pagination__item hidden md:block',
-          { active: current === pages },
-        ]"
+        :class="['pagination__item', { active: current === pages }]"
         @click.stop.prevent="lastHandler"
       >
         {{ pages }}
@@ -79,7 +70,7 @@
       ]"
       @click.stop.prevent="nextHandler"
     >
-      <svg-icon name="chevron_right" />
+      <icon name="md_twotone:chevron-right" />
     </li>
     <li
       class="
@@ -99,11 +90,13 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
+import Icon from './Icon.vue'
 
 export default defineComponent({
+  components: { Icon },
   props: {
     total: { type: Number, required: true },
-    current: { type: Number, default: 1 },
+    current: { type: [Number, String], default: 1 },
     rows: { type: Number, default: 10 },
     simple: { type: Boolean, default: false },
     totalRender: {
@@ -116,7 +109,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const pages = computed(() => Math.ceil(props.total / props.rows))
 
-    const clickHandler = (page: number) => {
+    const clickHandler = (page: number | string) => {
       if (page !== props.current) {
         emit('change', page)
       }
@@ -159,20 +152,20 @@ export default defineComponent({
 
     const prevHandler = () => {
       if (props.current > 1) {
-        emit('change', props.current - 1)
+        emit('change', Number(props.current) - 1)
       }
     }
 
     const nextHandler = () => {
       if (props.current < pages.value) {
-        emit('change', props.current + 1)
+        emit('change', Number(props.current) + 1)
       }
     }
 
     const inFive = (index: number) => {
       if (index > 1 && index < pages.value) {
-        let before = props.current - 2
-        let after = props.current + 2
+        let before = Number(props.current) - 2
+        let after = Number(props.current) + 2
         if (before <= 0) after -= before - 1
         if (after >= pages.value) {
           before -= after - pages.value

@@ -4,7 +4,7 @@
   }
 
   .pagination__item {
-    @apply py-1 px-3 mx-1 rounded cursor-pointer;
+    @apply py-1 px-3 mx-1 rounded cursor-pointer hidden md:inline-flex items-center;
 
     &.total {
       @apply border-transparent ml-auto cursor-text;
@@ -15,7 +15,7 @@
     }
 
     &.active {
-      @apply cursor-text shadow font-bold bg-red-800 text-white;
+      @apply cursor-text shadow font-bold bg-accent-800 text-white;
     }
 
     &:hover:not(.disabled, .total, .active) {
