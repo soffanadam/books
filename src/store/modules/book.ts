@@ -111,6 +111,11 @@ const actions = action<State, Action>(state, {
         })
     })
   },
+  async delete({ commit }, id: number) {
+    commit('LOADING')
+    await books.delete(id)
+    commit('LOADED')
+  },
 })
 
 export default {

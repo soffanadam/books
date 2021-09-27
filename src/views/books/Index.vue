@@ -15,6 +15,7 @@
         :key="book.id"
         :book="book"
         class="border-t"
+        @deleted="fetch"
       />
       <pagination
         :total="state.paginator.meta.total"
@@ -58,7 +59,7 @@ export default defineComponent({
       router.push({ query })
     }
 
-    return { state, pageChangeHandler }
+    return { state, fetch, pageChangeHandler }
   },
 })
 </script>

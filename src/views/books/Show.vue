@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import { computed, ComputedRef, defineComponent } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
 import { State as BookState } from '@/store/modules/book'
 import Icon from '@/components/ui/Icon.vue'
@@ -54,8 +54,14 @@ export default defineComponent({
     const state: ComputedRef<BookState> = computed(() => store.state.book)
 
     const route = useRoute()
-    const fetch = () => {
-      store.dispatch('book/show', route.params.id)
+    const router = useRouter()
+
+    const fetch = async () => {
+      try {
+        await store.dispatch('book/show', route.params.id)
+      } catch (error) {
+        router.push({ path: '/' })
+      }
     }
 
     fetch()
