@@ -1,1 +1,5 @@
+/* 3rd Parties */
+@import 'spinkit/spinkit.min.css';
+
 @import './pagination';
+@import './spinkit';

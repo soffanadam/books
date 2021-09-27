@@ -28,7 +28,10 @@
         "files": ["**/*.vue"],
         "parser": "vue-eslint-parser",
         "parserOptions": {
-          "parser": "@typescript-eslint/parser"
+          "parser": {
+            "ts": "@typescript-eslint/parser",
+            "<template>": "espree"
+          }
         },
         "extends": [
           "plugin:vue/vue3-recommended",
