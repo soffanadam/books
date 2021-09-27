@@ -57,7 +57,7 @@
       </li>
       <li
         v-if="pages > 1"
-        :class="['pagination__item', { active: current === pages }]"
+        :class="['pagination__item', { active: current == pages }]"
         @click.stop.prevent="lastHandler"
       >
         {{ pages }}
@@ -146,7 +146,7 @@ export default defineComponent({
 
     const lastHandler = () => {
       if (props.current < pages.value) {
-        emit('change', pages)
+        emit('change', pages.value)
       }
     }
 
