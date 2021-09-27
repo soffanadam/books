@@ -9,7 +9,11 @@
             border-t border-r border-l border-gray-500
           "
         >
-          <h1 class="text-white text-2xl">Book Collection</h1>
+          <h1 class="text-white text-2xl">
+            <router-link to="/" class="text-gray-100 hover:text-accent-300"
+              >Book Collection</router-link
+            >
+          </h1>
         </div>
       </div>
     </div>
