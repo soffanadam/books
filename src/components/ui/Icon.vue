@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <span class="inline-block" v-html="content"></span>
+  <span class="inline-flex justify-center" v-html="content"></span>
 </template>
 
 <script lang="ts">

@@ -1,0 +1,68 @@
+@layer components {
+  .button {
+    background-color: var(--background-color);
+    color: var(--contrast-text-color);
+    border-color: var(--background-color);
+
+    @apply inline-flex justify-center items-center px-4 py-1 leading-loose accent-400 focus:outline-none text-opacity-100 border bg-opacity-75 rounded-none;
+
+    &:hover,
+    &:active,
+    &.expanded {
+      @apply bg-opacity-90;
+    }
+
+    &:active,
+    &.expanded {
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+
+      @apply bg-opacity-80 shadow-inner;
+    }
+
+    & .icon {
+      @apply transform -translate-x-1.5 w-5 h-6;
+    }
+
+    &--sm {
+      @apply px-3 py-1 text-sm;
+    }
+
+    &--lg {
+      @apply px-5 py-2 text-lg;
+    }
+
+    &--outline,
+    &--flat {
+      color: var(--text-color);
+
+      @apply bg-opacity-0;
+
+      &:hover,
+      &:active,
+      &.expanded {
+        @apply bg-opacity-10;
+      }
+    }
+
+    &--outline {
+      border-color: var(--border-color);
+
+      @apply border-opacity-100;
+
+      &:hover,
+      &:active,
+      &.expanded {
+        @apply bg-opacity-20;
+      }
+    }
+
+    &--icon {
+      @apply px-0 py-0 h-10 w-10;
+
+      & .icon,
+      & .badged-icon {
+        @apply translate-x-0 w-1/2 h-1/2;
+      }
+    }
+  }
+}

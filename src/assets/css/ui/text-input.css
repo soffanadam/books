@@ -1,0 +1,19 @@
+@layer components {
+  .text-input {
+    & input, textarea {
+      @apply outline-none focus:ring-0 px-4 py-2 w-full bg-gray-200 border border-transparent rounded-none hover:bg-gray-50 hover:border-gray-300 focus:bg-white focus:border-accent-400 disabled:opacity-50 transition placeholder-gray-400 font-light;
+
+      .text-input--sm& {
+        @apply px-2 py-1 text-sm;
+      }
+
+      .text-input--lg& {
+        @apply px-5 py-3 text-lg;
+      }
+
+      .text-input--error& {
+        @apply border-red-700;
+      }
+    }
+  }
+}

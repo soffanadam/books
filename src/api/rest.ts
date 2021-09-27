@@ -19,6 +19,7 @@ function handlePromise<T>(axiosPromise: AxiosPromise): Promise<T> {
       })
       .catch(({ request, message, response }: AxiosError) => {
         const restError: Rest.Error = {
+          isRestError: true,
           message: 'Something went wrong',
         }
 

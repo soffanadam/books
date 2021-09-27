@@ -7,6 +7,9 @@
             p-5
             bg-gray-500 bg-opacity-50
             border-t border-r border-l border-gray-500
+            flex
+            justify-between
+            items-center
           "
         >
           <h1 class="text-white text-2xl">
@@ -14,6 +17,12 @@
               >Book Collection</router-link
             >
           </h1>
+          <router-link to="/books/create">
+            <btn class="accent-300" size="sm">
+              <icon name="md_twotone:add" />
+              New Book
+            </btn>
+          </router-link>
         </div>
       </div>
     </div>
@@ -24,9 +33,12 @@
 </template>
 
 <script lang="ts">
+import Btn from '@/components/ui/form/Btn.vue'
+import Icon from '@/components/ui/Icon.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
+  components: { Btn, Icon },
   //
 })
 </script>

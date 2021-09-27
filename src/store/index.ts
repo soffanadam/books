@@ -5,6 +5,7 @@ import {
   useStore as baseUseStore,
   Store,
 } from 'vuex'
+import books from './modules/books'
 import book from './modules/book'
 
 export interface RootState {
@@ -19,6 +20,7 @@ export const key: InjectionKey<Store<RootState>> = Symbol()
 export const store = createStore({
   state,
   modules: {
+    books,
     book,
   },
   strict: debug,

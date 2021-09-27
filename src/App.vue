@@ -2,6 +2,7 @@
   <layout>
     <router-view />
   </layout>
+  <notifications position="bottom center" />
 </template>
 
 <script lang="ts">

@@ -4,3 +4,9 @@ export interface Book {
   year: number
   description: string
 }
+
+export interface BookForm {
+  title: string
+  year: string
+  description: string
+}

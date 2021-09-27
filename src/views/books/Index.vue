@@ -31,7 +31,7 @@
 import { computed, ComputedRef, defineComponent, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
-import { State as BookState } from '@/store/modules/book'
+import { State as BooksState } from '@/store/modules/books'
 import { override } from '@/utils/query'
 import BookRow from '@/components/book/BookRow.vue'
 import LoadingText from '@/components/utils/LoadingText.vue'
@@ -42,11 +42,11 @@ export default defineComponent({
   components: { BookRow, Pagination, LoadingText, Spinner },
   setup() {
     const store = useStore()
-    const state: ComputedRef<BookState> = computed(() => store.state.book)
+    const state: ComputedRef<BooksState> = computed(() => store.state.books)
 
     const route = useRoute()
     const fetch = () => {
-      store.dispatch('book/paginate', route.query)
+      store.dispatch('books/paginate', route.query)
     }
 
     fetch()

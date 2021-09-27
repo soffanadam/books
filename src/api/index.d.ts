@@ -12,6 +12,7 @@ export interface Rest {
 export namespace Rest {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Error {
+    isRestError: boolean
     status?: number
     message: string
     errors?: PlainObject<string[]>

@@ -11,6 +11,7 @@
     "lint": "npm run lint:js && npm run lint:style"
   },
   "dependencies": {
+    "@kyvg/vue3-notification": "^2.3.4",
     "axios": "^0.21.4",
     "object-to-formdata": "^4.1.0",
     "spinkit": "^2.0.1",
