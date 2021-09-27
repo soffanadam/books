@@ -14,7 +14,7 @@
       </div>
     </div>
   </header>
-  <div class="container border border-t-0 bg-gray-50 max-w-3xl">
+  <div class="container border border-t-0 bg-gray-50 max-w-3xl mb-16">
     <slot />
   </div>
 </template>

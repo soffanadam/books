@@ -5,6 +5,7 @@ import {
   useStore as baseUseStore,
   Store,
 } from 'vuex'
+import book from './modules/book'
 
 export interface RootState {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,7 +19,7 @@ export const key: InjectionKey<Store<RootState>> = Symbol()
 export const store = createStore({
   state,
   modules: {
-    //
+    book,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

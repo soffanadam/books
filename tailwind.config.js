@@ -11,7 +11,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        accent: colors.indigo,
+        accent: colors.amber,
         success: colors.emerald,
         danger: colors.red,
         warning: colors.amber,
